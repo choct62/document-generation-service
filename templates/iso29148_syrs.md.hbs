@@ -1,0 +1,98 @@
+# {{metadata.title}}
+
+**Project:** {{metadata.project_name}}
+**Version:** {{metadata.version}}
+**Author:** {{metadata.author}}
+**Organization:** {{metadata.organization}}
+{{#if metadata.classification}}**Classification:** {{metadata.classification}}{{/if}}
+**Date:** {{metadata.generated_date}}
+
+---
+
+## 1. Introduction
+
+### 1.1 System Overview
+
+{{system_overview}}
+
+### 1.2 Document Purpose
+
+This System Requirements Specification (SyRS) defines the system-level requirements for {{metadata.project_name}} in accordance with ISO/IEC/IEEE 29148:2018.
+
+### 1.3 System Context
+
+{{#each system_context}}
+- {{this}}
+{{/each}}
+
+---
+
+## 2. System Requirements
+
+{{#each requirements}}
+### 2.{{@index}} [{{id}}] {{title}}
+
+**Type:** {{type}}
+**Priority:** {{priority}}
+**Criticality:** {{criticality}}
+
+#### Description
+{{description}}
+
+#### Rationale
+{{rationale}}
+
+#### Verification Method
+- **Method:** {{verification_method}}
+- **Test:** {{verification_test}}
+- **Demo:** {{verification_demo}}
+- **Analysis:** {{verification_analysis}}
+- **Inspection:** {{verification_inspection}}
+
+#### Traceability
+- **Parent (StakRS):** {{#each parent_requirements}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+- **Derives To (SRS):** {{#each child_requirements}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+{{/each}}
+
+---
+
+## 3. System Capabilities
+
+{{#each capabilities}}
+### 3.{{@index}} {{name}}
+
+{{description}}
+
+**Related Requirements:** {{#each requirements}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+{{/each}}
+
+---
+
+## 4. System Interfaces
+
+### 4.1 External Interfaces
+
+{{#each external_interfaces}}
+#### 4.1.{{@index}} {{name}}
+
+- **Type:** {{type}}
+- **Protocol:** {{protocol}}
+- **Requirements:** {{#each requirements}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+{{/each}}
+
+---
+
+## 5. Requirements Traceability Matrix
+
+| System Req ID | Stakeholder Req | Software Req | Verification | Status |
+|---------------|-----------------|--------------|--------------|--------|
+{{#each traceability}}
+| {{sys_req_id}} | {{stak_req_id}} | {{sw_req_ids}} | {{verification}} | {{status}} |
+{{/each}}
+
+---
+
+**End of Document**

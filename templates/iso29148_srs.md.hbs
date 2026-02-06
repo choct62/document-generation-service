@@ -1,0 +1,102 @@
+# {{metadata.title}}
+
+**Project:** {{metadata.project_name}}
+**Version:** {{metadata.version}}
+**Author:** {{metadata.author}}
+**Organization:** {{metadata.organization}}
+{{#if metadata.classification}}**Classification:** {{metadata.classification}}{{/if}}
+**Date:** {{metadata.generated_date}}
+
+---
+
+## 1. Introduction
+
+### 1.1 Purpose
+
+This Software Requirements Specification (SRS) specifies the software requirements for {{metadata.project_name}} in accordance with ISO/IEC/IEEE 29148:2018.
+
+### 1.2 Scope
+
+{{scope}}
+
+---
+
+## 2. Software Requirements
+
+{{#each requirements}}
+### 2.{{@index}} [{{id}}] {{title}}
+
+**Type:** {{type}} (Functional/Non-Functional/Interface/Data)
+**Priority:** {{priority}}
+**Criticality:** {{criticality}}
+
+#### Requirement Statement
+{{statement}}
+
+#### Acceptance Criteria
+{{#each acceptance_criteria}}
+{{@index}}. {{this}}
+{{/each}}
+
+#### Verification
+- **Method:** {{verification_method}}
+- **Test ID:** {{test_id}}
+- **Criteria:** {{verification_criteria}}
+
+#### Traceability
+- **Parent (SyRS):** {{parent_system_req}}
+- **Stakeholder:** {{stakeholder_req}}
+
+{{/each}}
+
+---
+
+## 3. Functional Requirements
+
+{{#each functional_requirements}}
+### 3.{{@index}} {{category}}
+
+{{#each items}}
+#### [{{id}}] {{title}}
+
+{{description}}
+
+**Inputs:** {{inputs}}
+**Processing:** {{processing}}
+**Outputs:** {{outputs}}
+
+{{/each}}
+{{/each}}
+
+---
+
+## 4. Non-Functional Requirements
+
+### 4.1 Performance Requirements
+{{#each performance_requirements}}
+- [{{id}}] {{description}} - Target: {{target}}
+{{/each}}
+
+### 4.2 Security Requirements
+{{#each security_requirements}}
+- [{{id}}] {{description}}
+{{/each}}
+
+### 4.3 Reliability Requirements
+{{#each reliability_requirements}}
+- [{{id}}] {{description}} - MTBF: {{mtbf}}, MTTR: {{mttr}}
+{{/each}}
+
+---
+
+## 5. Traceability Matrix
+
+| SW Req ID | SyRS Req | StakRS Req | Test Case | Verification Status |
+|-----------|----------|------------|-----------|---------------------|
+{{#each traceability}}
+| {{sw_req}} | {{sys_req}} | {{stak_req}} | {{test_case}} | {{status}} |
+{{/each}}
+
+---
+
+**End of Document**

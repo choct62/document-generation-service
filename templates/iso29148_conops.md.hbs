@@ -1,0 +1,88 @@
+# {{metadata.title}}
+
+**Project:** {{metadata.project_name}}
+**Version:** {{metadata.version}}
+**Author:** {{metadata.author}}
+**Organization:** {{metadata.organization}}
+**Date:** {{metadata.generated_date}}
+
+---
+
+## 1. Introduction
+
+### 1.1 Purpose
+
+This Concept of Operations (ConOps) describes how {{metadata.project_name}} will be used in its operational environment.
+
+### 1.2 System Overview
+
+{{system_overview}}
+
+---
+
+## 2. Operational Environment
+
+### 2.1 Current System
+
+{{current_system}}
+
+### 2.2 Proposed System
+
+{{proposed_system}}
+
+### 2.3 Operational Policies
+
+{{#each operational_policies}}
+- {{this}}
+{{/each}}
+
+---
+
+## 3. User Classes
+
+{{#each user_classes}}
+### 3.{{@index}} {{name}}
+
+**Description:** {{description}}
+**Responsibilities:** {{#each responsibilities}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+**Skill Level:** {{skill_level}}
+
+{{/each}}
+
+---
+
+## 4. Operational Scenarios
+
+{{#each scenarios}}
+### 4.{{@index}} {{title}}
+
+**Actors:** {{actors}}
+**Trigger:** {{trigger}}
+
+#### Steps
+{{#each steps}}
+{{@index}}. {{this}}
+{{/each}}
+
+#### Expected Outcome
+{{outcome}}
+
+{{/each}}
+
+---
+
+## 5. Operational Modes
+
+{{#each operational_modes}}
+### 5.{{@index}} {{name}}
+
+{{description}}
+
+**Entry Conditions:** {{#each entry_conditions}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+**Exit Conditions:** {{#each exit_conditions}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+
+{{/each}}
+
+---
+
+**End of Document**

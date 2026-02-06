@@ -1,0 +1,27 @@
+document-generation-service/
+├── Cargo.toml
+├── src/
+│   ├── main.rs
+│   ├── config.rs
+│   ├── error.rs
+│   ├── models.rs
+│   ├── generators/
+│   │   ├── mod.rs
+│   │   ├── ieee830.rs
+│   │   ├── milstd498.rs
+│   │   └── security_report.rs
+│   ├── renderers/
+│   │   ├── mod.rs
+│   │   ├── pdf.rs
+│   │   ├── markdown.rs
+│   │   └── html.rs
+│   └── handlers/
+│       ├── mod.rs
+│       └── generate.rs
+├── templates/
+│   ├── ieee830_drd.md.hbs
+│   ├── ieee830_srs.md.hbs
+│   └── security_report.md.hbs
+├── Dockerfile
+└── kubernetes/
+    └── deployment.yaml

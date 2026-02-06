@@ -1,0 +1,59 @@
+# {{metadata.title}}
+
+**Project:** {{metadata.project_name}}
+**Version:** {{metadata.version}}
+**Author:** {{metadata.author}}
+**Organization:** {{metadata.organization}}
+**Date:** {{metadata.generated_date}}
+
+---
+
+## 1. Introduction
+
+### 1.1 Purpose
+{{purpose}}
+
+### 1.2 Scope
+{{scope}}
+
+### 1.3 Definitions
+{{#each definitions}}
+- **{{term}}**: {{definition}}
+{{/each}}
+
+---
+
+## 2. Overall Description
+
+### 2.1 Product Perspective
+{{product_perspective}}
+
+### 2.2 Product Functions
+{{#each functions}}
+- {{this}}
+{{/each}}
+
+### 2.3 User Characteristics
+{{#each users}}
+- **{{role}}**: {{characteristics}}
+{{/each}}
+
+---
+
+## 3. Specific Requirements
+
+{{#each requirements}}
+### 3.{{@index}} [{{id}}] {{title}}
+
+{{description}}
+
+**Priority:** {{priority}}
+**Inputs:** {{inputs}}
+**Processing:** {{processing}}
+**Outputs:** {{outputs}}
+
+{{/each}}
+
+---
+
+**End of Document**

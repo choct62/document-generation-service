@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: document-generation-service
+  namespace: qxproveit
+  labels:
+    app: document-generation-service
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: document-generation-service
+  template:
+    metadata:
+      labels:
+        app: document-generation-service
+        version: v1
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: document-generation-service
+        image: us-docker.pkg.dev/mcxtest/qxproveit/document-generation-service:latest
+        imagePullPolicy: Always
+        env:
+        - name: SERVICE__PUBSUB__PROJECT_ID
+          value: "mcxtest"
+        - name: SERVICE__PUBSUB__REQUEST_SUBSCRIPTION
+          value: "document-generation-requests-sub"
+        - name: SERVICE__PUBSUB__RESPONSE_TOPIC
+          value: "document-generation-results"
+        - name: SERVICE__PUBSUB__MAX_CONCURRENT_MESSAGES
+          value: "10"
+        - name: SERVICE__SERVICE__LOG_LEVEL
+          value: "info"
+        - name: RUST_LOG
+          value: "info,document_generation_service=debug"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "2000m"
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "ps aux | grep document-generation-service | grep -v grep"
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "ps aux | grep document-generation-service | grep -v grep"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: document-generation-service-hpa
+  namespace: qxproveit
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: document-generation-service
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80

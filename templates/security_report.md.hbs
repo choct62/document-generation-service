@@ -1,0 +1,62 @@
+# {{metadata.title}}
+
+**Project:** {{metadata.project_name}}
+**Version:** {{metadata.version}}
+**Organization:** {{metadata.organization}}
+**Date:** {{metadata.generated_date}}
+{{#if metadata.classification}}**Classification:** {{metadata.classification}}{{/if}}
+
+---
+
+## Executive Summary
+
+{{executive_summary}}
+
+**Scan Date:** {{scan_date}}
+**Scanner:** {{scanner}}
+**Total Vulnerabilities:** {{total_vulnerabilities}}
+
+### Severity Breakdown
+- **Critical:** {{critical_count}}
+- **High:** {{high_count}}
+- **Medium:** {{medium_count}}
+- **Low:** {{low_count}}
+
+---
+
+## 2. Vulnerability Details
+
+{{#each vulnerabilities}}
+### 2.{{@index}} [{{severity}}] {{title}}
+
+**CVE ID:** {{cve_id}}
+**CVSS Score:** {{cvss_score}}
+**Component:** {{component}}
+**Version:** {{version}}
+
+#### Description
+{{description}}
+
+#### Impact
+{{impact}}
+
+#### Remediation
+{{remediation}}
+
+#### References
+{{#each references}}
+- {{this}}
+{{/each}}
+
+---
+{{/each}}
+
+## 3. Recommendations
+
+{{#each recommendations}}
+{{@index}}. {{this}}
+{{/each}}
+
+---
+
+**End of Document**
