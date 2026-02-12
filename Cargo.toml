@@ -25,3 +25,13 @@ google-cloud-pubsub = "0.25"
 google-cloud-googleapis = { version = "0.13.0", features = ["pubsub"] }
 google-cloud-gax = "0.17"
 tokio-util = "0.7"
+
+# --- Database ---
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "json", "bigdecimal"] }
+
+# --- GCS ---
+google-cloud-storage = "0.18"
+
+# --- Checksums ---
+sha2 = "0.10"
+hex = "0.4"
